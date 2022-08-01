@@ -1,0 +1,14 @@
+---
+- hosts: all
+  gather_facts: no
+  become: no
+  vars_files:
+    - vars/main.yml
+    - vars/vault.yml
+
+  tasks:
+    - name: deploying homepage
+      import_tasks: tasks/homepage.yml
+
+    - name: deploying exoplanets
+      import_tasks: tasks/exoplanets.yml

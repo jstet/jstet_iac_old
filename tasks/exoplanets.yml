@@ -1,0 +1,17 @@
+- name: Get app code from github
+  shell: |
+    git clone https://github.com/JStet/Exoplanets.git
+  ignore_errors: yes
+  
+- name: template docker-compose to exoplanets folder
+  template:
+    src: templates/exoplanets/docker-compose.j2
+    dest: /home/user/Exoplanets/docker-compose.yml
+
+- name: build exoplanets image
+  shell: |
+      cd Exoplanets && docker build -t exoplanets --no-cache .
+
+- name: docker compose exoplanets
+  shell: |
+    cd Exoplanets && docker stack deploy -c docker-compose.yml exoplanets

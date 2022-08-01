@@ -1,0 +1,21 @@
+- name: Create deploy key 
+  shell: | 
+    yes 'y' | ssh-keygen -o -a 100 -t ed25519 -C  {{  github_email  }} -f /home/user/.ssh/id_rsa -N ''
+
+- name: add key to authorized keys
+  shell: |
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys 
+
+- name: copy private key to local pc
+  ansible.builtin.fetch:
+    src: .ssh/id_rsa
+    dest: output/private_key.txt
+    flat: yes
+
+- name: copy public key to local pc
+  ansible.builtin.fetch:
+    src: .ssh/id_rsa.pub
+    dest: output/public_key.txt
+    flat: yes
+
+  

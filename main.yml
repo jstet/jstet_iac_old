@@ -1,0 +1,40 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: no
+  vars_files:
+    - vars/main.yml
+    - vars/vault.yml
+  roles:
+    - role: jstet.deploy_base
+      vars:
+          packages: 
+              - htop
+              - vim
+              - net-tools
+          user: user
+          GRAFANA_PW: "{{ GRAFANA_PW_VAULT }}"
+          LETSENCRYPT_EMAIL: mail@jstet.net
+          MONITORING_DOMAIN: "{{ MONITORING_DOMAIN_VAULT }}"
+          TRAEFIK_PW: "{{ TRAEFIK_PW_VAULT }}"
+          TRAEFIK_USER: admin
+          SLACK_WEBHOOK: "{{  SLACK_WEBHOOK }}"
+  tasks:
+  - name: configuring git
+    shell: | 
+      git config --global user.name {{github_account}}
+      git config --global user.email {{github_email}}
+  
+  - name: creating ssh deploy key
+    import_tasks: tasks/ssh.yml
+
+
+  
+   
+        
+      
+    
+
+    
+
+    

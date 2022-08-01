@@ -1,0 +1,17 @@
+- name: Get app code from github
+  shell: |
+    git clone https://github.com/JStet/homepage.git
+  ignore_errors: yes
+  
+- name: template docker-compose to homepage folder
+  template:
+    src: templates/homepage/docker-compose.j2
+    dest: /home/user/homepage/docker-compose.yml
+
+- name: build homepage image
+  shell: |
+      cd homepage && docker build -t homepage --no-cache .
+
+- name: docker compose homepage
+  shell: |
+    cd homepage && docker stack deploy -c docker-compose.yml homepage

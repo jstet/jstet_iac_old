@@ -1,0 +1,8 @@
+[servers] #group of hosts
+;name(choose anything doesnt matter) and !IP address of server! <- Change to the IP of the server you want to run app on
+server ansible_host=217.160.43.221
+
+[all:vars] #define variables for all hosts
+
+;user with which ansible accesses the server. this user was created with cloud-config
+ansible_user=user
