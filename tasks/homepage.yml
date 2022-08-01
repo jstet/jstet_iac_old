@@ -2,16 +2,25 @@
   shell: |
     git clone https://github.com/JStet/homepage.git
   ignore_errors: yes
+
+- name: create dir for compose 
+  file:
+    path: /home/user/compose_homepage
+    state: directory
   
-- name: template docker-compose to homepage folder
+- name: template docker-compose to compose folder
   template:
     src: templates/homepage/docker-compose.j2
-    dest: /home/user/homepage/docker-compose.yml
+    dest: /home/user/compose_homepage/docker-compose.yml
 
 - name: build homepage image
   shell: |
-      cd homepage && docker build -t homepage --no-cache .
+      cd homepage && docker build --no-cache -t localhost:5000/homepage .
+
+- name: push image
+  shell: |
+      docker push localhost:5000/homepage
 
 - name: docker compose homepage
   shell: |
-    cd homepage && docker stack deploy -c docker-compose.yml homepage
+    cd compose_homepage && docker stack deploy -c docker-compose.yml homepage

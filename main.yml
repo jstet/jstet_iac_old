@@ -18,7 +18,7 @@
           MONITORING_DOMAIN: "{{ MONITORING_DOMAIN_VAULT }}"
           TRAEFIK_PW: "{{ TRAEFIK_PW_VAULT }}"
           TRAEFIK_USER: admin
-          SLACK_WEBHOOK: "{{  SLACK_WEBHOOK }}"
+          SLACK_WEBHOOK: "{{  SLACK_WEBHOOK_VAULT }}"
   tasks:
   - name: configuring git
     shell: | 

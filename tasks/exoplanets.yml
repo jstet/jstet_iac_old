@@ -2,16 +2,25 @@
   shell: |
     git clone https://github.com/JStet/Exoplanets.git
   ignore_errors: yes
+
+- name: create dir for compose 
+  file:
+    path: /home/user/compose_exoplanets
+    state: directory
   
 - name: template docker-compose to exoplanets folder
   template:
     src: templates/exoplanets/docker-compose.j2
-    dest: /home/user/Exoplanets/docker-compose.yml
+    dest: /home/user/compose_exoplanets/docker-compose.yml
 
 - name: build exoplanets image
   shell: |
-      cd Exoplanets && docker build -t exoplanets --no-cache .
+      cd Exoplanets && docker build --no-cache -t localhost:5000/exoplanets .
+
+- name: push image
+  shell: |
+      docker push localhost:5000/exoplanets
 
 - name: docker compose exoplanets
   shell: |
-    cd Exoplanets && docker stack deploy -c docker-compose.yml exoplanets
+    cd compose_exoplanets && docker stack deploy -c docker-compose.yml exoplanets
