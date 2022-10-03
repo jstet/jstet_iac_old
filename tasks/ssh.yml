@@ -1,6 +1,6 @@
 - name: Create deploy key 
   shell: | 
-    yes 'y' | ssh-keygen -o -a 100 -t ed25519 -C  {{  github_email  }} -f /home/user/.ssh/id_rsa -N ''
+    yes 'y' | ssh-keygen -o -a 100 -t ed25519 -C  {{  GITHUB_EMAIL  }} -f /home/user/.ssh/id_rsa -N ''
 
 - name: add key to authorized keys
   shell: |

@@ -3,9 +3,9 @@ version: "3.8"
 services:
 
   homepage:
-    image: localhost:5000/homepage
+    image: jstet/homepage:latest
     ports:
-      - 80
+      - 3000
     networks:
       - proxy
     deploy:
@@ -20,7 +20,7 @@ services:
       - "traefik.http.routers.homepage-secure.tls=true"
       - "traefik.http.routers.homepage-secure.tls.certresolver=http"
       - "traefik.http.routers.homepage-secure.service=homepage"
-      - "traefik.http.services.homepage.loadbalancer.server.port=80"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
       - "traefik.docker.network=proxy"
       mode: replicated
       replicas: 2

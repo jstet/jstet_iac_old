@@ -15,11 +15,11 @@
 
 - name: build exoplanets image
   shell: |
-      cd Exoplanets && docker build --no-cache -t localhost:5000/exoplanets .
+      cd Exoplanets && docker build --no-cache -t jstet/exoplanets:latest .
 
 - name: push image
   shell: |
-      docker push localhost:5000/exoplanets
+      docker push jstet/exoplanets:latest
 
 - name: docker compose exoplanets
   shell: |

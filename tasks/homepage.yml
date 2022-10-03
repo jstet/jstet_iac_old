@@ -15,11 +15,11 @@
 
 - name: build homepage image
   shell: |
-      cd homepage && docker build --no-cache -t localhost:5000/homepage .
+      cd homepage && docker build --no-cache -t jstet/homepage:latest .
 
 - name: push image
   shell: |
-      docker push localhost:5000/homepage
+      docker push jstet/homepage:latest
 
 - name: docker compose homepage
   shell: |
