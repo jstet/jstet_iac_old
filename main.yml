@@ -17,16 +17,7 @@
           LETSENCRYPT_EMAIL: "{{ LETSENCRYPT_EMAIL_ }}"
           MONITORING_DOMAIN: "{{ MONITORING_DOMAIN_ }}"
           SLACK_WEBHOOK: "{{  SLACK_WEBHOOK_VAULT }}"
-          PLAUSIBLE_ADMIN_EMAIL: "{{ LETSENCRYPT_EMAIL_ }}"
-          PLAUSIBLE_ADMIN: "{{ PLAUSIBLE_ADMIN_ }}"
-          PLAUSIBLE_ADMIN_PW: "{{ PLAUSIBLE_ADMIN_PW_VAULT }}"
-          PLAUSIBLE_URL:  "{{ PLAUSIBLE_URL_  }}"
-          PLAUSIBLE_KEY: "{{  PLAUSIBLE_KEY_VAULT  }}"
-          MAILER_EMAIL: "{{ MAILER_EMAIL_  }}"
-          SMTP_HOST_ADDR: "{{  SMTP_HOST_ADDR_  }}"
-          SMTP_HOST_PORT: "{{ SMTP_HOST_PORT_  }}"
-          SMTP_USER_NAME: "{{  SMTP_USER_NAME_  }}"
-          SMTP_USER_PWD: "{{  SMTP_USER_PWD_VAULT }}"
+
   tasks:
   - name: configuring git
     shell: | 

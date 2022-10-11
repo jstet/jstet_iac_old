@@ -6,7 +6,5 @@ MONITORING_DOMAIN_: grafana.jstet.net
 GITHUB_ACCOUNT: jstet
 GITHUB_EMAIL: mail@jstet.net
 LETSENCRYPT_EMAIL_: mail@jstet.net
-MAILER_EMAIL_: bot@jstet.net
-SMTP_HOST_ADDR_: mail.your-server.de
-SMTP_HOST_PORT_: 587
-SMTP_USER_NAME_: bot@jstet.net
+
+
