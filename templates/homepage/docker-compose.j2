@@ -1,13 +1,29 @@
-version: "3.8"
+version: "3.9"
 
 services:
-
+  homepage_redis:
+      container_name: homepage_redis
+      image: jstet/homepage_redis:latest
+      ports:
+        - 6379
+      networks:
+       - db
+      healthcheck:
+        test: ["CMD", "redis-cli","ping"]
+      deploy:
+        mode: global
+        placement:
+          constraints:
+            - node.role==manager
+        restart_policy:
+          condition: on-failure 
   homepage:
     image: jstet/homepage:latest
     ports:
       - 3000
     networks:
       - proxy
+      - db
     deploy:
       labels:
       - "traefik.enable=true"
@@ -37,4 +53,8 @@ services:
 networks:
   proxy:
     external: true
+  db:
+    name: db
+    driver: overlay
+
  

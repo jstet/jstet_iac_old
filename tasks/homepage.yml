@@ -1,25 +1,46 @@
-- name: Get app code from github
-  shell: |
-    git clone https://github.com/JStet/homepage.git
-  ignore_errors: yes
+# - name: Get app code from github
+#   git:
+#     repo: https://github.com/JStet/homepage.git
+#     dest: /home/user/homepage
+#     force: yes
 
-- name: create dir for compose 
-  file:
-    path: /home/user/compose_homepage
-    state: directory
-  
+# - name: template .env to folder
+#   template:
+#     src: templates/homepage/env.j2
+#     dest: /home/user/homepage/.env
+#     force: yes
+
+# - name: template .env to parent folder for automatic deploy
+#   template:
+#     src: templates/homepage/env.j2
+#     dest: /home/user/homepage.env
+#     force: yes
+
+# - name: create dir for compose 
+#   file:
+#     path: /home/user/compose_homepage
+#     state: directory
+
 - name: template docker-compose to compose folder
   template:
     src: templates/homepage/docker-compose.j2
     dest: /home/user/compose_homepage/docker-compose.yml
 
-- name: build homepage image
-  shell: |
-      cd homepage && docker build --no-cache -t jstet/homepage:latest .
+# - name: build homepage image
+#   shell: |
+#       cd homepage && docker build --no-cache -t jstet/homepage:latest .
 
-- name: push image
-  shell: |
-      docker push jstet/homepage:latest
+# - name: push homepage image
+#   shell: |
+#       docker push jstet/homepage:latest
+
+# - name: build homepage_redis image
+#   shell: |
+#       cd homepage/Redis && docker build --no-cache -t jstet/homepage_redis:latest .
+
+# - name: push homepage_redis image
+#   shell: |
+#       docker push jstet/homepage_redis:latest
 
 - name: docker compose homepage
   shell: |
